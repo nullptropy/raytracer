@@ -1,6 +1,6 @@
 # computer-graphics
 
-computer graphics from scratch
+[computer graphics from scratch](https://gabrielgambetta.com/computer-graphics-from-scratch/)
 
 - [ ] canvas
   - [ ] simple bmp encoder
