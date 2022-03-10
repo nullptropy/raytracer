@@ -30,11 +30,12 @@ Color color_rgb(uint8_t r, uint8_t g, uint8_t b);
 BMPImage bmp_new(uint32_t w, uint32_t h);
     void bmp_set_pixel(BMPImage *image, uint32_t x, uint32_t y);
     void bmp_export(BMPImage *image, const char *path);
+    void bmp_free(BMPImage *image);
 
 Canvas canvas_new(uint32_t w, uint32_t h);
-  void canvas_set_pixel(Canvas *canvas, int x, int, y, Color color);
-  void canvas_line(Canvas *canvas, int x1, int y1, int x2, int y2, Color color);
-   int canvas_export(Canvas *canvas, const char *path);
+  void canvas_set_pixel(Canvas *canvas, int x, int y, Color color);
+  void canvas_export(Canvas *canvas, const char *path);
+  void canvas_free(Canvas *canvas);
 ```
 
 # The BMP Format
