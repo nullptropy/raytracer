@@ -3,7 +3,7 @@
 
 BMPImage bmp_new(uint32_t w, uint32_t h) {
     BMPImage bmp = { w, h };
-    bmp.pixel_data = malloc(w * h * 3);
+    bmp.pixel_data = malloc(sizeof(uint8_t) * (w * h * 3));
 
     return bmp;
 }
