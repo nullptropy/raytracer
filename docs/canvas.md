@@ -39,4 +39,29 @@ Canvas canvas_new(uint32_t w, uint32_t h);
 
 # The BMP Format
 
-WIP
+**The BITMAPFILEHEADER**:
+
+| size | name     | default | description                                                             |
+|------|----------|---------|-------------------------------------------------------------------------|
+| 2    | type     | 'BM'    | must always be set to 'BM' to declare that this is a bmp file           |
+| 4    | size     | ?       | specifies the size of the file in bytes.                                |
+| 2    | reserved | 0       | must always be set to zero.                                             |
+| 2    | reserved | 0       | must always be set to zero.                                             |
+| 4    | offset   | 0x28    | specifies the offset from the beginning of the file to the bitmap data. |
+
+
+**The BITMAPINFOHEADER**:
+
+| size | name            | default | description                                                                                                                       |
+|------|-----------------|---------|-----------------------------------------------------------------------------------------------------------------------------------|
+| 4    | size            | 40      | specifies the size of the BITMAPINFOHEADER structure, in bytes.                                                                   |
+| 4    | width           | 100     | specifies the width of the image, in pixels.                                                                                      |
+| 4    | height          | 100     | specifies the height of the image, in pixels.                                                                                     |
+| 2    | planes          | 1       | specifies the number of planes of the target device                                                                               |
+| 2    | bit_count       | 24      | specifies the number of bits per pixel.                                                                                           |
+| 4    | compression     | 0       | Specifies the type of compression, usually set to zero (no compression).                                                          |
+| 4    | size_image      | 0       | specifies the size of the image data, in bytes. If there is no compression, it is valid to set this member to zero.               |
+| 4    | dumb            | 0       | specifies the the horizontal pixels per meter on the designated targer device, usually set to zero.                               |
+| 4    | dumb            | 0       | specifies the the vertical pixels per meter on the designated targer device, usually set to zero.                                 |
+| 4    | color_used      | 0       | specifies the number of colors used in the bitmap, if set to zero the number of colors is calculated using the biBitCount member. |
+| 4    | color_important | 0       | specifies the number of color that are 'important' for the bitmap, if set to zero, all colors are important.                      |
