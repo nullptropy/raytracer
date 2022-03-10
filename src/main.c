@@ -26,6 +26,6 @@ int main() {
     c.image.pixel_data[c.w*c.h-c.w] = 4;
     debug_canvas(c);
         
-    free(c.image.pixel_data);
+    canvas_free(&c);
     return 0;
 }
