@@ -23,10 +23,10 @@ void debug_canvas(struct Canvas c)
 
 int main()
 {
-	struct Canvas c = canvas_new(4, 4);
+    struct Canvas c = canvas_new(4, 4);
     c.image.pixel_data[c.w*c.h-c.w] = 4;
     debug_canvas(c);
         
-	free(c.image.pixel_data);
-	return 0;
+    free(c.image.pixel_data);
+    return 0;
 }
