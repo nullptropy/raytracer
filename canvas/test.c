@@ -13,8 +13,8 @@ void debug_canvas(Canvas c) {
 
     // TODO: broken rn since we're using an array of `Colors`
     printf("   ");
-    for (int x = 0; x < c.w; x++) {
-        for (int y = 0; y < c.h; y++) {
+    for (int y = 0; y < c.h; y++) {
+        for (int x = 0; x < c.w; x++) {
             printf("(%d,", c.image.pixel_data[c.w*y+x].r);
             printf("%d,", c.image.pixel_data[c.w*y+x].g);
             printf("%d) ", c.image.pixel_data[c.w*y+x].b);
