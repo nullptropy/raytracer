@@ -11,19 +11,19 @@ void debug_canvas(Canvas c) {
     printf("  h: %d\n", c.image.h);
     printf("  pixel_data:\n");
 
-    printf("   ");
-    for (int i = 0; i < c.w; i++) {
-        for (int j = 0; j < c.h; j++)
-            printf("%d", c.image.pixel_data[i*c.h+j]);
-        printf("\n   ");
-    }
-    printf("\b\b\b");
+    // TODO: broken rn since we're using an array of `Colors`
+    /* printf("   "); */
+    /* for (int x = 0; x < c.w; x++) { */
+    /*     for (int y = 0; y < c.h; y++) */
+    /*         printf("%d", c.image.pixel_data[y*c.w+x].b); */
+    /*     printf("\n   "); */
+    /* } */
+    /* printf("\b\b\b"); */
 }
 
 
 int main() {
     Canvas c = canvas_new(4, 4);
-    c.image.pixel_data[c.w*c.h-c.w] = 4;
     debug_canvas(c);
         
     canvas_free(&c);

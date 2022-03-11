@@ -16,7 +16,7 @@ struct Color {
 struct BMPImage {
     uint32_t w;
     uint32_t h;
-    uint8_t *pixel_data; /* flat array of size (w * h * 3) */
+    Color *pixel_data; /* flat array of size (w * h) */
 }
 
 struct Canvas {

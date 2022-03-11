@@ -10,7 +10,7 @@ typedef struct color {
 typedef struct bmp {
     uint32_t w;
     uint32_t h;
-    uint8_t *pixel_data; /* flat array of size (w * h * 3) */
+    Color *pixel_data; /* flat array of size (w * h) */
 } BMPImage;
 
 typedef struct canvas {
@@ -18,6 +18,8 @@ typedef struct canvas {
     uint32_t h;
     BMPImage image;
 } Canvas;
+
+Color color_rgb(uint8_t r, uint8_t g, uint8_t b);
 
 BMPImage bmp_new(uint32_t w, uint32_t h);
 void bmp_set_pixel(BMPImage *image, uint32_t x, uint32_t y, Color color);
