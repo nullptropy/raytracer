@@ -20,7 +20,7 @@ typedef struct canvas {
 } Canvas;
 
 BMPImage bmp_new(uint32_t w, uint32_t h);
-void bmp_set_pixel(BMPImage *image, uint32_t x, uint32_t y);
+void bmp_set_pixel(BMPImage *image, uint32_t x, uint32_t y, Color color);
 void bmp_export(BMPImage *image, const char *path);
 void bmp_free(BMPImage *image);
 
