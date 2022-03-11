@@ -48,7 +48,7 @@ Canvas canvas_new(uint32_t w, uint32_t h);
 | 4    | size     | ?       | specifies the size of the file in bytes.                                |
 | 2    | reserved | 0       | must always be set to zero.                                             |
 | 2    | reserved | 0       | must always be set to zero.                                             |
-| 4    | offset   | 0x28    | specifies the offset from the beginning of the file to the bitmap data. |
+| 4    | offset   | 0x36    | specifies the offset from the beginning of the file to the bitmap data. |
 
 
 **The BITMAPINFOHEADER**:
