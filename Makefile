@@ -1,13 +1,14 @@
 CC?=cc
+CFLAGS=-Wall -O0
+LDFLAGS=-I./canvas
 
-bin=a.out
+canvas_test: canvas.o canvas/test.c
+	${CC} ${LDFLAGS} -o $@ canvas.o canvas/test.c
 
-all: $(bin)
-
-$(bin): src/main.c src/canvas.c include/canvas.h
-	${CC} -o $(bin) src/main.c src/canvas.c -I./include -Wall -O0
+canvas.o: canvas/canvas.c canvas/canvas.h
+	${CC} ${CFLAGS} -c -o $@ canvas/canvas.c
 
 clean:
-	rm $(bin)
+	rm -f *.o canvas_test
 
 .PHONY: clean
