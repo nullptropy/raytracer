@@ -14,13 +14,9 @@ BMPImage bmp_new(uint32_t w, uint32_t h) {
 }
 
 void bmp_set_pixel(BMPImage *image, uint32_t x, uint32_t y, Color color) {
-    if (x > image->w || x < 0)
-        return;
-
-    if (y > image->h || y < 0)
-        return;
-
-    image->pixel_data[image->w*y + x] = color;
+    if (x < image->w && y < image->h) {
+        image->pixel_data[image->w*y + x] = color;
+    }
 }
 
 void bmp_free(BMPImage *image) {
