@@ -1,14 +1,27 @@
+.POSIX:
+
+
 CC?=cc
 CFLAGS=-Wall -O0
 LDFLAGS=-I./canvas
 
-canvas_test: canvas.o canvas/test.c
-	${CC} ${LDFLAGS} -o $@ canvas.o canvas/test.c
+BUILDDIR=build
+BINDIR=${BUILDDIR}/bin
+OBJDIR=${BUILDDIR}/obj
 
-canvas.o: canvas/canvas.c canvas/canvas.h
+
+all: setup ${BINDIR}/canvas_test
+${BINDIR}/canvas_test: ${OBJDIR}/canvas.o ${OBJDIR}/test.o
+	${CC} ${LDFLAGS} -o $@ ${OBJDIR}/canvas.o ${OBJDIR}/test.o
+${OBJDIR}/canvas.o: canvas/canvas.c canvas/canvas.h
 	${CC} ${CFLAGS} -c -o $@ canvas/canvas.c
+${OBJDIR}/test.o: canvas/test.c canvas/canvas.h
+	${CC} ${CFLAGS} -c -o $@ canvas/test.c
+
 
 clean:
-	rm -f *.o canvas_test
+	rm -rf build/
+setup:
+	mkdir -p build/{bin,obj}
 
-.PHONY: clean
+.PHONY: all clean setup
