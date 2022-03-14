@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 typedef struct color {
     uint8_t r;

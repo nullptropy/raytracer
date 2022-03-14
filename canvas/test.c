@@ -1,9 +1,10 @@
-#include <stdio.h>
 #include <inttypes.h>
+#include <stdio.h>
 
 #include "canvas.h"
 
-static void canvas_draw_rectangle(Canvas *canvas, int x, int y, int w, int h, Color color) {
+static void canvas_draw_rectangle(Canvas *canvas, int x, int y, int w, int h,
+                                  Color color) {
     for (int nx = 0; nx < w; nx++) {
         for (int ny = 0; ny < h; ny++) {
             canvas_set_pixel(canvas, x + nx, y + ny, color);

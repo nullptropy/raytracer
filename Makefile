@@ -1,6 +1,7 @@
 .POSIX:
 
 
+FORMAT=n
 CC?=cc
 CFLAGS=-Wall -O0
 LDFLAGS=-I./canvas
@@ -25,5 +26,9 @@ clean:
 	rm -rf build/
 setup:
 	mkdir -p build/{bin,obj}
+format:
+	@[[ "${FORMAT}" = "y" ]] && \
+		find . -type f -name '*.[ch]' -exec clang-format -i {} + || \
+		echo "'make format FORMAT=y' to format."
 
-.PHONY: all clean setup
+.PHONY: all clean setup format
