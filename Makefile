@@ -1,14 +1,34 @@
+.POSIX:
+
+
+FORMAT=n
 CC?=cc
 CFLAGS=-Wall -O0
 LDFLAGS=-I./canvas
 
-canvas_test: canvas.o canvas/test.c
-	${CC} ${LDFLAGS} -o $@ canvas.o canvas/test.c
+BUILDDIR=build
+BINDIR=${BUILDDIR}/bin
+OBJDIR=${BUILDDIR}/obj
 
-canvas.o: canvas/canvas.c canvas/canvas.h
+
+all: setup ${BINDIR}/canvas_test
+${BINDIR}/canvas_test: ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o
+	${CC} ${LDFLAGS} -o $@ ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o
+${OBJDIR}/canvas.o: canvas/canvas.c canvas/canvas.h
 	${CC} ${CFLAGS} -c -o $@ canvas/canvas.c
+${OBJDIR}/bmp.o: canvas/bmp.c canvas/canvas.h
+	${CC} ${CFLAGS} -c -o $@ canvas/bmp.c
+${OBJDIR}/test.o: canvas/test.c canvas/canvas.h
+	${CC} ${CFLAGS} -c -o $@ canvas/test.c
+
 
 clean:
-	rm -f *.o canvas_test
+	rm -rf build/
+setup:
+	mkdir -p build/{bin,obj}
+format:
+	@[[ "${FORMAT}" = "y" ]] && \
+		find . -type f -name '*.[ch]' -exec clang-format -i {} + || \
+		echo "'make format FORMAT=y' to format."
 
-.PHONY: clean
+.PHONY: all clean setup format
