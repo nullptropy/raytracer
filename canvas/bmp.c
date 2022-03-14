@@ -1,6 +1,7 @@
 #include "canvas.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 BMPImage bmp_new(uint32_t w, uint32_t h) {
     BMPImage bmp = { w, h };

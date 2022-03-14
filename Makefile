@@ -16,7 +16,7 @@ ${BINDIR}/canvas_test: ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o
 	${CC} ${LDFLAGS} -o $@ ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o
 ${OBJDIR}/canvas.o: canvas/canvas.c canvas/canvas.h
 	${CC} ${CFLAGS} -c -o $@ canvas/canvas.c
-${OBJDIR}/bmp.o: canvas/bmp.c canvas/canvas.h
+${OBJDIR}/bmp.o: canvas/bmp.c canvas/bmp.h
 	${CC} ${CFLAGS} -c -o $@ canvas/bmp.c
 ${OBJDIR}/test.o: canvas/test.c canvas/canvas.h
 	${CC} ${CFLAGS} -c -o $@ canvas/test.c
