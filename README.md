@@ -2,8 +2,8 @@
 
 [computer graphics from scratch](https://gabrielgambetta.com/computer-graphics-from-scratch/)
 
-- [ ] canvas
-  - [ ] simple bmp encoder
-  - [ ] user facing api: `set_pixel(x, y, color)`, `export(path)`
+- [x] canvas
+  - [x] simple bmp encoder
+  - [x] user facing api: `set_pixel(x, y, color)`, `export(path)`
 - [ ] raytracer
 - [ ] rasterizer
