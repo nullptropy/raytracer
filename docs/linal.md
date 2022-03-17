@@ -21,35 +21,36 @@ Vec3 vec3_norm(Vec3 v);
 Vec3 vec3_cross(Vec3 a, Vec3 b);
 float vec3_dot(Vec3 a, Vec3 b);
 ```
+
 ### Vector API Implementation Status:
 - [x] `Vec3 vec3_new(float x, float y, float z);`
 
-> returns a new instance of `Vec3`
+> Returns a new instance of `Vec3`.
 
-- [x] `Vec3 vec3_mul(Vec3 a, float k)`;
+- [x] `Vec3 vec3_mul(Vec3 a, float k);`
 
-> returns a new `Vec3`, where each element is `a`s elements multiplied by `k`
+> Returns a new `Vec3`, where each element of `a` is multiplied by `k`.
 
-- [x] `Vec3 vec3_add(Vec3 a, Vec3 b)`;
+- [x] `Vec3 vec3_add(Vec3 a, Vec3 b);`
 
-> returns element wise addition of `a` and `b` in a new `Vec3`
+> Returns a new `Vec3`, where each element of `a` is added with the corresponding element of `b`.
 
-- [x] `Vec3 vec3_sub(Vec3 a, Vec3 b)`;
+- [x] `Vec3 vec3_sub(Vec3 a, Vec3 b);`
 
-> returns element wise substraction of `a` and `b` in a new `Vec3`
+> Returns a new `Vec3`, where each element of `a` is subtracted by the corresponding element of `b`.
 
-- [ ] `float vec3_len(Vec3 v)`;
+- [ ] `float vec3_len(Vec3 v);`
 
-> returns the magnitude of `v`, which is equal to `sqrt(x^2 + y^2 + z^2)`
+> Returns a `float`, of the magnitude of `v` (which is equal to `sqrt(x^2 + y^2 + z^2)`).
 
-- [ ] `Vec3 vec3_norm(Vec3 v)`;
+- [ ] `Vec3 vec3_norm(Vec3 v);`
 
-> returns `v` in its normalized form, that is each element is divided by `v`s length
+> Returns a new `Vec3`, where `v` in its normalized form, that is each element of `v` is divided by `v`'s length (`vec3_len()` of `v`).
 
-- [x] `Vec3 vec3_cross(Vec3 a, Vec3 b)`;
+- [x] `Vec3 vec3_cross(Vec3 a, Vec3 b);`
 
-> returns the cross product `a x b`
+> Returns a new `Vec3`, with the the cross product of `a` and `b` (`a * b`).
 
-- [x] `float vec3_dot(Vec3 a, Vec3 b)`;
+- [x] `float vec3_dot(Vec3 a, Vec3 b);`
 
-> returns the dot product `a.b`
+> Returns a new `Vec3`, with the the dot product of `a` and `b` (`a.b`).
