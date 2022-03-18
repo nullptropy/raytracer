@@ -1,10 +1,7 @@
 #include "canvas.h"
 
 Canvas canvas_new(uint32_t w, uint32_t h) {
-    BMPImage bmp = bmp_new(w, h);
-    Canvas c = { w, h, bmp };
-
-    return c;
+    return (Canvas){ w, h, bmp_new(w, h) };
 }
 
 void canvas_set_pixel(Canvas *canvas, int x, int y, Color color) {

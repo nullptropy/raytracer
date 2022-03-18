@@ -1,7 +1,7 @@
+#include <stdint.h>
+
 #include "bmp.h"
 #include "color.h"
-
-#include <stdint.h>
 
 typedef struct canvas {
     uint32_t w;

@@ -1,5 +1,6 @@
-#include "color.h"
 #include <stdint.h>
+
+#include "color.h"
 
 typedef struct bmp {
     uint32_t w;
