@@ -28,6 +28,11 @@ static void debug_canvas(Canvas *c) {
         canvas_set_pixel(c, 0, i, color_rgb(0xff, 0x00, 0xff));
     }
 
+    /* testing color_add */
+    canvas_draw_rectangle(
+        c, -100, 0, 100, 100,
+        color_add(color_rgb(0xff, 0x00, 0xff), color_rgb(0x00, 0x55, 0xff)));
+
     canvas_draw_rectangle(c, 0, 0, 100, 100, color_rgb(0xff, 0xff, 0xff));
     canvas_export(c, "canvas_test.bmp");
 }
