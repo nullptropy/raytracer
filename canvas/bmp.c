@@ -1,13 +1,10 @@
-#include "canvas.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
-BMPImage bmp_new(uint32_t w, uint32_t h) {
-    BMPImage bmp = { w, h };
-    bmp.pixel_data = calloc(sizeof(Color), w * h);
+#include "canvas.h"
 
-    return bmp;
+BMPImage bmp_new(uint32_t w, uint32_t h) {
+    return (BMPImage){ w, h, calloc(sizeof(Color), w * h) };
 }
 
 void bmp_set_pixel(BMPImage *image, uint32_t x, uint32_t y, Color color) {
@@ -67,9 +64,9 @@ static void write_pixel_data(FILE *file, uint32_t padding, BMPImage *image) {
     uint8_t pad[3] = { 0 };
     uint8_t bgr[3] = { 0 };
 
-    for (int y = image->h - 1; y > -1; y--) {
-        for (int x = 0; x < image->w; x++) {
-            Color color = image->pixel_data[y * image->w + x];
+    for (uint32_t y = 0; y < image->h; y++) {
+        for (uint32_t x = 0; x < image->w; x++) {
+            Color color = image->pixel_data[(image->h - y - 1) * image->w + x];
 
             bgr[0] = color.b;
             bgr[1] = color.g;
@@ -78,7 +75,7 @@ static void write_pixel_data(FILE *file, uint32_t padding, BMPImage *image) {
             fwrite(&bgr, sizeof(uint8_t), 3, file);
         }
 
-        for (int i = 0; i < padding; i++)
+        for (uint32_t i = 0; i < padding; i++)
             fwrite(&pad, sizeof(uint8_t), padding, file);
     }
 }

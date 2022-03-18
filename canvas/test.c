@@ -21,7 +21,6 @@ static void debug_canvas(Canvas *c) {
     printf("    h: %d\n", c->image.h);
 
     int hw = c->w / 2;
-    int hh = c->w / 2;
 
     for (int i = -hw; i < hw; i++) {
         canvas_set_pixel(c, i, 0, color_rgb(0x00, 0xff, 0x00));
