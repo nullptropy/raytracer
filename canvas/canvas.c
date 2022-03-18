@@ -1,10 +1,5 @@
 #include "canvas.h"
 
-Color color_rgb(uint8_t r, uint8_t g, uint8_t b) {
-    Color c = { r, g, b };
-    return c;
-}
-
 Canvas canvas_new(uint32_t w, uint32_t h) {
     BMPImage bmp = bmp_new(w, h);
     Canvas c = { w, h, bmp };

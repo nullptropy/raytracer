@@ -3,6 +3,7 @@
 
 FORMAT=n
 CC?=cc
+CFLAGS1=-Weverything -O0 -fsanitize=undefined -pedantic
 CFLAGS=-Wall -O0
 LDFLAGS=-I./canvas
 
@@ -12,10 +13,12 @@ OBJDIR=${BUILDDIR}/obj
 
 
 all: setup ${BINDIR}/canvas_test
-${BINDIR}/canvas_test: ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o
-	${CC} ${LDFLAGS} -o $@ ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o
+${BINDIR}/canvas_test: ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o ${OBJDIR}/color.o
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ ${OBJDIR}/canvas.o ${OBJDIR}/test.o ${OBJDIR}/bmp.o ${OBJDIR}/color.o
 ${OBJDIR}/canvas.o: canvas/canvas.c canvas/canvas.h
 	${CC} ${CFLAGS} -c -o $@ canvas/canvas.c
+${OBJDIR}/color.o: canvas/color.c canvas/color.h
+	${CC} ${CFLAGS} -c -o $@ canvas/color.c
 ${OBJDIR}/bmp.o: canvas/bmp.c canvas/bmp.h
 	${CC} ${CFLAGS} -c -o $@ canvas/bmp.c
 ${OBJDIR}/test.o: canvas/test.c canvas/canvas.h

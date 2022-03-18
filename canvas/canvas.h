@@ -1,4 +1,6 @@
 #include "bmp.h"
+#include "color.h"
+
 #include <stdint.h>
 
 typedef struct canvas {
