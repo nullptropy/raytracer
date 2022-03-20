@@ -44,3 +44,10 @@
 
 build/
 *.bmp
+
+# premake
+Makefile
+makefile
+
+# clangd cache
+.cache
