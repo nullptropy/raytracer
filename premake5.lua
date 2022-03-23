@@ -11,6 +11,14 @@ workspace "ComputerGraphics"
     end
   }
 
+  newaction {
+    trigger = "format",
+    description = "chang-format",
+    execute = function()
+      os.execute("find . -type f -name '*.[ch]' -exec clang-format -i {} +")
+    end
+  }
+
   function generate_project(name, type, link, include)
     project(name)
       kind(type)
