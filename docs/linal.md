@@ -39,11 +39,11 @@ float vec3_dot(Vec3 a, Vec3 b);
 
 > Returns a new `Vec3`, where each element of `a` is subtracted by the corresponding element of `b`.
 
-- [ ] `float vec3_len(Vec3 v);`
+- [x] `float vec3_len(Vec3 v);`
 
 > Returns a `float`, of the magnitude of `v` (which is equal to `sqrt(x^2 + y^2 + z^2)`).
 
-- [ ] `Vec3 vec3_norm(Vec3 v);`
+- [x] `Vec3 vec3_norm(Vec3 v);`
 
 > Returns a new `Vec3`, where `v` in its normalized form, that is each element of `v` is divided by `v`'s length (`vec3_len()` of `v`).
 
