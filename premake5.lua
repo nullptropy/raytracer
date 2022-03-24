@@ -1,5 +1,6 @@
 workspace "ComputerGraphics"
   configurations { "debug", "release" }
+  buildoptions { "-pedantic", "-Wall", "-Wextra" }
 
   newaction {
     trigger = "clean",
@@ -36,7 +37,7 @@ workspace "ComputerGraphics"
         symbols "on"
 
       filter "configurations:release"
-        optimize "on"
+        optimize "Speed"
   end
 
   function generate_test(name, link, include)
@@ -51,7 +52,7 @@ workspace "ComputerGraphics"
       includedirs(include)
   end
 
-  generate_project("linal", "StaticLib", {}, {})
+  generate_project("linal", "StaticLib", { "libm" }, {})
   generate_project("canvas", "StaticLib", {}, {})
 
   -- generate_project("raytracer", "ConsoleApp", { "canvas", "linal" }, {})
