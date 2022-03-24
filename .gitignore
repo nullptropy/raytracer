@@ -49,5 +49,6 @@ build/
 Makefile
 makefile
 
-# clangd cache
+# clangd
 .cache
+compile_commands.json
