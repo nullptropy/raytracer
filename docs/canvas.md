@@ -25,7 +25,7 @@ struct Canvas {
     BMPImage image;
 }
 
-Color color_rgb(uint8_t r, uint8_t g, uint8_t b);
+Color color_rgb(uint32_t rgb);
 
 BMPImage bmp_new(uint32_t w, uint32_t h);
     void bmp_set_pixel(BMPImage *image, uint32_t x, uint32_t y, Color color);

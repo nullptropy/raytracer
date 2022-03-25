@@ -14,8 +14,8 @@ static inline uint8_t safe_sub(uint8_t a, uint8_t b) {
     return a - b;
 }
 
-Color color_rgb(uint8_t r, uint8_t g, uint8_t b) {
-    return (Color){ r, g, b };
+Color color_rgb(uint32_t rgb) {
+    return (Color){ rgb >> 16, rgb >> 8, rgb };
 }
 
 Color color_add(Color a, Color b) {

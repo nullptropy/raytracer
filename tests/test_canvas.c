@@ -20,18 +20,18 @@ static void debug_canvas(Canvas *c) {
     printf("    w: %d\n", c->image.w);
     printf("    h: %d\n", c->image.h);
 
-    canvas_clear(c, color_rgb(0x64, 0x95, 0xed));
+    canvas_clear(c, color_rgb(0x6495ed));
 
     /* testing color_add */
     canvas_draw_rectangle(
         c, -70, 0, 70, 70,
-        color_add(color_rgb(0xff, 0x00, 0xff), color_rgb(0x00, 0x55, 0xff)));
+        color_add(color_rgb(0xff00ff), color_rgb(0x0055ff)));
 
-    canvas_draw_rectangle(c, 0, 0, 70, 70, color_rgb(0xff, 0xff, 0xff));
+    canvas_draw_rectangle(c, 0, 0, 70, 70, color_rgb(0xffffff));
 
     for (int i = -c->hw; i < c->hw; i++) {
-        canvas_set_pixel(c, i, 0, color_rgb(0x00, 0x00, 0x00));
-        canvas_set_pixel(c, 0, i, color_rgb(0x00, 0x00, 0x00));
+        canvas_set_pixel(c, i, 0, color_rgb(0x000000));
+        canvas_set_pixel(c, 0, i, color_rgb(0x000000));
     }
 
     canvas_export(c, "canvas_test.bmp");
