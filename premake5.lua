@@ -20,6 +20,15 @@ workspace "ComputerGraphics"
     end
   }
 
+  newaction {
+    trigger = "make",
+    description = "call execute `premake5 gmake; bear -- make;`",
+    execute = function()
+      os.execute("premake5 gmake")
+      os.execute("bear -- make config=debug all;")
+    end
+  }
+
   function generate_project(name, type, link, include)
     project(name)
       kind(type)
