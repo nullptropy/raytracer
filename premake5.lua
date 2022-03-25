@@ -64,7 +64,7 @@ workspace "ComputerGraphics"
   generate_project("linal", "StaticLib", { "libm" }, {})
   generate_project("canvas", "StaticLib", {}, {})
 
-  -- generate_project("raytracer", "ConsoleApp", { "canvas", "linal" }, {})
+  generate_project("raytracer", "ConsoleApp", { "canvas", "linal" }, { "." })
   -- generate_project("rasterizer", "ConsoleApp", { "canvas", "linal" }, {})
 
   generate_test("test_canvas", "canvas", {})
