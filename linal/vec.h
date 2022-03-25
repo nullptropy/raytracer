@@ -1,3 +1,6 @@
+#ifndef LINAL_VEC_H
+#define LINAL_VEC_H
+
 typedef struct vec3 {
     float x;
     float y;
@@ -15,3 +18,5 @@ float vec3_len(Vec3 vec);
 
 Vec3 vec3_cross(Vec3 a, Vec3 b);
 float vec3_dot(Vec3 a, Vec3 b);
+
+#endif
