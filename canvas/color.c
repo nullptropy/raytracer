@@ -1,8 +1,8 @@
 #include "color.h"
 
-#define safe_add(a, b) UINT8_MAX-(a)<(b) ? 0xff : (a)+(b)
-#define safe_sub(a, b) (a)<(b) ? 0 : (a)-(b)
-#define safe_mul(a, b) (b)<0 ? 0x0 : (b)>1 ? 0xff : (a)*(b)
+#define safe_add(a, b) UINT8_MAX - (a) < (b) ? 0xff : (a) + (b)
+#define safe_sub(a, b) (a) < (b) ? 0 : (a) - (b)
+#define safe_mul(a, b) (b)<0 ? 0x0 : (b)> 1 ? 0xff : (a) * (b)
 
 Color color_rgb(uint32_t rgb) {
     return (Color){ rgb >> 16, rgb >> 8, rgb };
