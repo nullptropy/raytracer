@@ -61,10 +61,10 @@ workspace "ComputerGraphics"
       includedirs(include)
   end
 
-  generate_project("linal", "StaticLib", { "libm" }, {})
+  generate_project("linal", "StaticLib", { "m" }, {})
   generate_project("canvas", "StaticLib", {}, {})
 
-  generate_project("raytracer", "ConsoleApp", { "canvas", "linal" }, { "." })
+  generate_project("raytracer", "ConsoleApp", { "canvas", "linal", "m" }, { "." })
   -- generate_project("rasterizer", "ConsoleApp", { "canvas", "linal" }, {})
 
   generate_test("test_canvas", "canvas", {})
