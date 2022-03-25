@@ -20,8 +20,8 @@ struct BMPImage {
 }
 
 struct Canvas {
-    uint32_t w;
-    uint32_t h;
+    int hw;
+    int hh;
     BMPImage image;
 }
 
@@ -34,6 +34,7 @@ BMPImage bmp_new(uint32_t w, uint32_t h);
 
 Canvas canvas_new(uint32_t w, uint32_t h);
   void canvas_set_pixel(Canvas *canvas, int x, int y, Color color);
+  void canvas_clear(Canvas *canvas, Color c);
   void canvas_export(Canvas *canvas, const char *path);
   void canvas_free(Canvas *canvas);
 ```
