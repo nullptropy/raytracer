@@ -23,8 +23,10 @@ static void debug_canvas(Canvas *c) {
     canvas_clear(c, color_rgb(0x6495ed));
 
     Color color = color_add(color_rgb(0xff00ff), color_rgb(0x0055ff));
+    canvas_draw_rectangle(c, 0, 0, 70, 70, color);
+    canvas_draw_rectangle(c, 0, -70, 70, 70, color_mul(color, 0.5));
     canvas_draw_rectangle(c, -70, 0, 70, 70, color_mul(color, 2));
-    canvas_draw_rectangle(c, 0, 0, 70, 70, color_mul(color, 0.5));
+    canvas_draw_rectangle(c, -70, -70, 70, 70, color_mul(color, -0.1));
 
     for (int i = -c->hw; i < c->hw; i++) {
         canvas_set_pixel(c, i, 0, color_rgb(0x000000));
