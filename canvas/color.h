@@ -17,4 +17,6 @@ Color color_addk(Color a, uint8_t k);
 Color color_sub(Color a, Color b);
 Color color_subk(Color a, uint8_t k);
 
+Color color_mul(Color a, float k);
+
 #endif
