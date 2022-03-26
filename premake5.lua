@@ -22,10 +22,9 @@ workspace "ComputerGraphics"
 
   newaction {
     trigger = "make",
-    description = "call execute `premake5 gmake; bear -- make;`",
+    description = "execute `premake5 gmake && bear -- make`",
     execute = function()
-      os.execute("premake5 gmake")
-      os.execute("bear -- make config=debug all;")
+      os.execute("premake5 gmake && bear -- make config=debug all")
     end
   }
 

@@ -4,7 +4,7 @@
 /*
  * calling UFMT(vec3_add(v1, v1)) will result in the following code
  * ```c
- * vec3_add(v1, v2).y, vec3_add(v1, v2).x, vec3_add(v1, v2).z
+ * vec3_add(v1, v2).x, vec3_add(v1, v2).y, vec3_add(v1, v2).z
  * ```
  * which does the addition _3_ times and therefore is bad. it should be avoided
  * unless performance is not a concern.
