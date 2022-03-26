@@ -18,11 +18,11 @@ Vec3 viewport_coords(ViewPort *self, int x, int y, Canvas *canvas) {
                     (float)self->d);
 }
 
-Scene scene_new(Camera cam, ViewPort viewport) {
+Scene scene_new(Camera cam, ViewPort viewport, Color bg) {
     SphereArray objects;
     array_init(Sphere, &objects, 8);
 
-    return (Scene){ cam, viewport, objects };
+    return (Scene){ bg, cam, viewport, objects };
 }
 
 void scene_add_object(Scene *scene, Sphere sphere) {
@@ -50,7 +50,7 @@ static Color trace_ray(Scene *scene, Vec3 d) {
     if (closest != NULL)
         return closest->color;
 
-    return color_rgb(0x6495ed);
+    return scene->bg;
 }
 
 void scene_render(Scene *scene, Canvas *canvas) {
