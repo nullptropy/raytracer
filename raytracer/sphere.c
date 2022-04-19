@@ -18,7 +18,7 @@ int sphere_intersect_ray(Sphere *s, Camera *cam, Vec3 d, float *r) {
     float c = vec3_dot(co, co) - s->rad * s->rad;
 
     float delta2 = b * b - 4 * a * c;
-    if (delta2 > 0) {
+    if (delta2 >= 0) {
         float delta = sqrtf(delta2);
         r[0] = (-b + delta) / (2.0 * a);
         r[1] = (-b - delta) / (2.0 * a);
