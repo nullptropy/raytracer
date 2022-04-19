@@ -3,6 +3,8 @@
 
 #include "canvas.h"
 
+#define LUPACK(v) (v), (v) >> 8, (v) >> 16, (v) >> 24
+
 BMPImage bmp_new(uint32_t w, uint32_t h) {
     return (BMPImage){ w, h, calloc(sizeof(Color), w * h) };
 }
@@ -20,9 +22,9 @@ static void write_file_header(FILE *file, size_t head_size, size_t data_size) {
     uint8_t file_header[14] = {
         /* clang-format off */
         0x42, 0x4d,
-        f, f >> 8, f >> 16, f >> 24,
+        LUPACK(f),
         0x00, 0x00, 0x00, 0x00,
-        h, h >> 8, h >> 16, h >> 24,
+        LUPACK(h),
         /* clang-format on */
     };
 
@@ -38,12 +40,12 @@ static void write_info_header(FILE *file, size_t data_size, BMPImage *image) {
     uint8_t info_header[40] = {
         /* clang-format off */
         0x28, 0x00, 0x00, 0x00,
-        w, w >> 8, w >> 16, w >> 24,
-        h, h >> 8, h >> 16, h >> 24,
+        LUPACK(w),
+        LUPACK(h),
         0x01, 0x00,
         0x18, 0x00,
         0x00, 0x00, 0x00, 0x00,
-        d, d >> 8, d >> 16, d >> 24,
+        LUPACK(d),
         0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00,
