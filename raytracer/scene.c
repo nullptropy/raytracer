@@ -23,7 +23,7 @@ Scene scene_new(Camera cam, ViewPort viewport, Color bg) {
     LightArray lights;
 
     array_init(Sphere, &objects, 8);
-    array_init(LightArray, &lights, 8);
+    array_init(Light, &lights, 8);
 
     return (Scene){ bg, cam, viewport, objects, lights };
 }
