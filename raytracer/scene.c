@@ -103,3 +103,8 @@ void scene_render(Scene *scene, Canvas *canvas) {
                                                               x, y, canvas)));
     }
 }
+
+void scene_free(Scene *scene) {
+    array_free(&scene->lights);
+    array_free(&scene->objects);
+}
