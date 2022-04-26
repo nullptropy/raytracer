@@ -6,8 +6,8 @@
 #include "camera.h"
 #include "sphere.h"
 
-Sphere sphere_new(float rad, Vec3 pos, Color color) {
-    return (Sphere){ rad, pos, color };
+Sphere sphere_new(float rad, Vec3 pos, Color color, float specular) {
+    return (Sphere){ rad, pos, color, specular };
 }
 
 int sphere_intersect_ray(Sphere *s, Camera *cam, Vec3 d, float *r) {
