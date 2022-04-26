@@ -36,7 +36,7 @@ void scene_add_light(Scene *scene, Light light) {
     array_add(&scene->lights, light);
 }
 
-static float compute_lighting(Scene *scene, Vec3 P, Vec3 N) {
+static float compute_lighting(Scene *scene, Vec3 P, Vec3 N, Vec3 V, float s) {
     float intensity = 0;
 
     for (int i = 0; i < scene->lights.num; i++) {
@@ -52,6 +52,15 @@ static float compute_lighting(Scene *scene, Vec3 P, Vec3 N) {
         float NL = vec3_dot(N, L);
         intensity +=
             (NL < 0) ? 0 : light->intensity * NL / (vec3_len(L) * vec3_len(N));
+
+        if (s != -1) {
+            Vec3 R = vec3_sub(vec3_mul(N, 2 * NL), L);
+            float RV = vec3_dot(R, V);
+
+            if (RV > 0)
+                intensity += light->intensity *
+                             powf(RV / (vec3_len(R) * vec3_len(V)), s);
+        }
     }
 
     return intensity;
@@ -81,7 +90,9 @@ static Color trace_ray(Scene *scene, Vec3 d) {
     Vec3 P = vec3_add(scene->cam.pos, vec3_mul(d, closest_t));
     Vec3 N = vec3_norm(vec3_sub(P, closest->pos));
 
-    return color_mul(closest->color, compute_lighting(scene, P, N));
+    return color_mul(
+        closest->color,
+        compute_lighting(scene, P, N, vec3_mul(d, -1), closest->specular));
 }
 
 void scene_render(Scene *scene, Canvas *canvas) {
