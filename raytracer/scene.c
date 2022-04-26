@@ -42,27 +42,16 @@ static float compute_lighting(Scene *scene, Vec3 P, Vec3 N) {
     for (int i = 0; i < scene->lights.num; i++) {
         Light *light = &scene->lights.values[i];
 
-        switch (light->type) {
-        case Ambient:
+        if (light->type == Ambient) {
             intensity += light->intensity;
-            break;
-        case Point: {
-            Vec3 L = vec3_sub(light->position, P);
-            float NL = vec3_dot(N, L);
-            intensity +=
-                (NL < 0) ? 0
-                         : light->intensity * NL / (vec3_len(L) * vec3_len(N));
-            break;
+            continue;
         }
-        case Directional: {
-            Vec3 L = light->direction;
-            float NL = vec3_dot(N, L);
-            intensity +=
-                (NL < 0) ? 0
-                         : light->intensity * NL / (vec3_len(L) * vec3_len(N));
-            break;
-        }
-        }
+
+        Vec3 L = (light->type == Point) ? vec3_sub(light->position, P)
+                                        : light->direction;
+        float NL = vec3_dot(N, L);
+        intensity +=
+            (NL < 0) ? 0 : light->intensity * NL / (vec3_len(L) * vec3_len(N));
     }
 
     return intensity;
