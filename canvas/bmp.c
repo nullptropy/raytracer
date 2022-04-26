@@ -23,7 +23,7 @@ static void write_file_header(FILE *file, size_t head_size, size_t data_size) {
         /* clang-format off */
         0x42, 0x4d,
         LUPACK(f),
-        0x00, 0x00, 0x00, 0x00,
+        LUPACK(0x00),
         LUPACK(h),
         /* clang-format on */
     };
@@ -44,12 +44,12 @@ static void write_info_header(FILE *file, size_t data_size, BMPImage *image) {
         LUPACK(h),
         0x01, 0x00,
         0x18, 0x00,
-        0x00, 0x00, 0x00, 0x00,
+        LUPACK(0x00),
         LUPACK(d),
-        0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00,
+        LUPACK(0x00),
+        LUPACK(0x00),
+        LUPACK(0x00),
+        LUPACK(0x00),
         /* clang-format on */
     };
 
