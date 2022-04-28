@@ -45,6 +45,7 @@ workspace "ComputerGraphics"
         symbols "on"
 
       filter "configurations:release"
+        symbols "on"
         optimize "Speed"
   end
 
