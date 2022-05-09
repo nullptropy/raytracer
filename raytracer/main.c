@@ -9,13 +9,19 @@
 #include "sphere.h"
 
 int main(void) {
-    Canvas canvas = canvas_new(400, 400);
-    Scene scene = scene_new(camera_new(0, 0, 0), viewport_new(1, 1, 1),
-                            color_rgb(0x000000));
+    float camera_hview = 1.0;
+    float aspect_ratio = 4.0 / 3.0;
+    float canvas_width = 1024;
 
-    scene_add_light(&scene, light_new_ambient(0.2));
-    scene_add_light(&scene, light_new_point(0.6, vec3_new(0, 1, 2)));
-    scene_add_light(&scene, light_new_directional(0.2, vec3_new(1, 4, 4)));
+    Canvas canvas = canvas_new(canvas_width, canvas_width / aspect_ratio);
+    Scene scene =
+        scene_new(camera_new(0, 0, 0),
+                  viewport_new(camera_hview * aspect_ratio, camera_hview, 1),
+                  color_rgb(0x000000));
+
+    /* scene_add_light(&scene, light_new_ambient(0.2)); */
+    /* scene_add_light(&scene, light_new_directional(0.4, vec3_new(1, 4, 4))); */
+    scene_add_light(&scene, light_new_point(0.8, vec3_new(0, 1, 3)));
 
     scene_add_object(
         &scene, sphere_new(1, vec3_new(0, -1, 3), color_rgb(0xff0000), 500));

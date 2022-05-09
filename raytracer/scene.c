@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdio.h>
 
 #include "canvas/canvas.h"
 #include "linal/vec.h"
@@ -8,7 +9,7 @@
 #include "scene.h"
 #include "sphere.h"
 
-ViewPort viewport_new(int w, int h, int d) {
+ViewPort viewport_new(float w, float h, float d) {
     return (ViewPort){ w, h, d };
 }
 
