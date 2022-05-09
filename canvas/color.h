@@ -2,6 +2,10 @@
 #define CANVAS_COLOR_H
 
 #include <stdint.h>
+#include <inttypes.h>
+
+#define FCOLOR "(%" PRIu8 ", %" PRIu8 ", %" PRIu8 ")"
+#define UCOLOR(c) (c).r, (c).g, (c).b
 
 typedef struct color {
     uint8_t r;
