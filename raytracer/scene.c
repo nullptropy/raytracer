@@ -9,6 +9,11 @@
 #include "scene.h"
 #include "sphere.h"
 
+typedef struct hit_record {
+    float t;
+    Sphere *sphere;
+} HitRecord;
+
 ViewPort viewport_new(float w, float h, float d) {
     return (ViewPort){ w, h, d };
 }
@@ -37,6 +42,27 @@ void scene_add_light(Scene *scene, Light light) {
     array_add(&scene->lights, light);
 }
 
+static HitRecord closest_intersection(Scene *scene, Vec3 o, Vec3 d, float t_min, float t_max) {
+    float closest_t = INFINITY;
+    Sphere *closest = NULL;
+    float result[2] = { 0 };
+
+    for (int i = 0; i < scene->objects.num; i++) {
+        Sphere *object = &scene->objects.values[i];
+        if (sphere_intersect_ray(object, o, d, result) == 0) {
+            for (int n = 0; n < 2; n++) {
+                if (result[n] > t_min && result[n] < t_max &&
+                    result[n] < closest_t) {
+                    closest_t = result[n];
+                    closest = object;
+                }
+            }
+        }
+    }
+
+    return (HitRecord) { closest_t, closest };
+}
+
 static float compute_lighting(Scene *scene, Vec3 P, Vec3 N, Vec3 V, float s) {
     float intensity = 0;
 
@@ -50,6 +76,12 @@ static float compute_lighting(Scene *scene, Vec3 P, Vec3 N, Vec3 V, float s) {
 
         Vec3 L = (light->type == Point) ? vec3_sub(light->position, P)
                                         : light->direction;
+        float t_max = (light->type == Point) ? 1.0 : INFINITY;
+
+        // setting e to 0.001
+        if (closest_intersection(scene, P, L, 0.001, t_max).sphere != NULL)
+            continue;
+
         float NL = vec3_dot(N, L);
         intensity +=
             (NL < 0) ? 0 : light->intensity * NL / (vec3_len(L) * vec3_len(N));
@@ -68,22 +100,10 @@ static float compute_lighting(Scene *scene, Vec3 P, Vec3 N, Vec3 V, float s) {
 }
 
 static Color trace_ray(Scene *scene, Vec3 o, Vec3 d, float t_min, float t_max) {
-    float closest_t = INFINITY;
-    Sphere *closest = NULL;
-    float result[2] = { 0 };
+    HitRecord hit = closest_intersection(scene, o, d, t_min, t_max);
 
-    for (int i = 0; i < scene->objects.num; i++) {
-        Sphere *object = &scene->objects.values[i];
-        if (sphere_intersect_ray(object, o, d, result) == 0) {
-            for (int n = 0; n < 2; n++) {
-                if (result[n] > t_min && result[n] < t_max &&
-                    result[n] < closest_t) {
-                    closest_t = result[n];
-                    closest = object;
-                }
-            }
-        }
-    }
+    Sphere *closest = hit.sphere;
+    float closest_t = hit.t;
 
     if (closest == NULL)
         return scene->bg;
