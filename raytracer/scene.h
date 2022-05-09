@@ -26,7 +26,7 @@ ViewPort viewport_new(float w, float h, float d);
 Vec3 viewport_coords(ViewPort *self, int x, int y, Canvas *canvas);
 
 Scene scene_new(Camera cam, ViewPort viewport, Color bg);
-void scene_render(Scene *scene, Canvas *canvas);
+void scene_render(Scene *scene, Canvas *canvas, int recursion_limit);
 void scene_add_object(Scene *scene, Sphere sphere);
 void scene_add_light(Scene *scene, Light light);
 void scene_free(Scene *scene);

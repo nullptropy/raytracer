@@ -11,6 +11,7 @@ typedef struct sphere {
     Vec3 pos;
     Color color;
     float specular;
+    float reflective;
 } Sphere;
 
 typedef struct sphere_array {
@@ -19,7 +20,7 @@ typedef struct sphere_array {
     int cap;
 } SphereArray;
 
-Sphere sphere_new(float rad, Vec3 pos, Color color, float specular);
+Sphere sphere_new(float rad, Vec3 pos, Color color, float specular, float reflective);
 int sphere_intersect_ray(Sphere *s, Vec3 o, Vec3 d, float *r);
 
 #endif

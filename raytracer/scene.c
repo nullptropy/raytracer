@@ -6,6 +6,7 @@
 
 #include "array.h"
 #include "camera.h"
+#include "color.h"
 #include "scene.h"
 #include "sphere.h"
 
@@ -78,7 +79,6 @@ static float compute_lighting(Scene *scene, Vec3 P, Vec3 N, Vec3 V, float s) {
                                         : light->direction;
         float t_max = (light->type == Point) ? 1.0 : INFINITY;
 
-        // setting e to 0.001
         if (closest_intersection(scene, P, L, 0.001, t_max).sphere != NULL)
             continue;
 
@@ -99,29 +99,42 @@ static float compute_lighting(Scene *scene, Vec3 P, Vec3 N, Vec3 V, float s) {
     return intensity;
 }
 
-static Color trace_ray(Scene *scene, Vec3 o, Vec3 d, float t_min, float t_max) {
+static Color trace_ray(Scene *scene, Vec3 o, Vec3 d, float t_min, float t_max, int recursion_depth) {
     HitRecord hit = closest_intersection(scene, o, d, t_min, t_max);
 
     Sphere *closest = hit.sphere;
     float closest_t = hit.t;
 
-    if (closest == NULL)
+    if (closest == NULL) {
         return scene->bg;
+    }
 
-    Vec3 P = vec3_add(scene->cam.pos, vec3_mul(d, closest_t));
+    Vec3 P = vec3_add(o, vec3_mul(d, closest_t));
     Vec3 N = vec3_norm(vec3_sub(P, closest->pos));
+    Vec3 R = vec3_mul(d, -1);
 
-    return color_mul(
+    Color local_color = color_mul(
         closest->color,
-        compute_lighting(scene, P, N, vec3_mul(d, -1), closest->specular));
+        compute_lighting(scene, P, N, R, closest->specular));
+
+    float r = closest->reflective;
+    if (recursion_depth <= 0 || r <= 0)
+        return local_color;
+
+    R = vec3_sub(vec3_mul(N, 2 * vec3_dot(R, N)), R);
+
+    return color_add(
+        color_mul(local_color, 1.0 - r),
+        color_mul(trace_ray(scene, P, R, 0.1, INFINITY, recursion_depth - 1), r));
 }
 
-void scene_render(Scene *scene, Canvas *canvas) {
+void scene_render(Scene *scene, Canvas *canvas, int recursion_limit) {
     for (int x = -canvas->hw; x < canvas->hw; x++) {
         for (int y = canvas->hh; y > -canvas->hh; y--) {
             Color color = trace_ray(
                 scene, scene->cam.pos,
-                viewport_coords(&scene->viewport, x, y, canvas), 1.0, INFINITY);
+                viewport_coords(&scene->viewport, x, y, canvas), 1.0, INFINITY, recursion_limit);
+
             canvas_set_pixel(canvas, x, y, color);
         }
     }
