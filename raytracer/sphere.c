@@ -10,8 +10,8 @@ Sphere sphere_new(float rad, Vec3 pos, Color color, float specular) {
     return (Sphere){ rad, pos, color, specular };
 }
 
-int sphere_intersect_ray(Sphere *s, Camera *cam, Vec3 d, float *r) {
-    Vec3 co = vec3_sub(cam->pos, s->pos);
+int sphere_intersect_ray(Sphere *s, Vec3 o, Vec3 d, float *r) {
+    Vec3 co = vec3_sub(o, s->pos);
 
     float a = vec3_dot(d, d);
     float b = vec3_dot(co, d) * 2.0;

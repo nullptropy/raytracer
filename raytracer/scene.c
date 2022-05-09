@@ -67,16 +67,16 @@ static float compute_lighting(Scene *scene, Vec3 P, Vec3 N, Vec3 V, float s) {
     return intensity;
 }
 
-static Color trace_ray(Scene *scene, Vec3 d) {
+static Color trace_ray(Scene *scene, Vec3 o, Vec3 d, float t_min, float t_max) {
     float closest_t = INFINITY;
     Sphere *closest = NULL;
     float result[2] = { 0 };
 
     for (int i = 0; i < scene->objects.num; i++) {
         Sphere *object = &scene->objects.values[i];
-        if (sphere_intersect_ray(object, &scene->cam, d, result) == 0) {
+        if (sphere_intersect_ray(object, o, d, result) == 0) {
             for (int n = 0; n < 2; n++) {
-                if (result[n] > 1.0 && result[n] < INFINITY &&
+                if (result[n] > t_min && result[n] < t_max &&
                     result[n] < closest_t) {
                     closest_t = result[n];
                     closest = object;
@@ -98,10 +98,12 @@ static Color trace_ray(Scene *scene, Vec3 d) {
 
 void scene_render(Scene *scene, Canvas *canvas) {
     for (int x = -canvas->hw; x < canvas->hw; x++) {
-        for (int y = canvas->hh; y > -canvas->hh; y--)
-            canvas_set_pixel(canvas, x, y,
-                             trace_ray(scene, viewport_coords(&scene->viewport,
-                                                              x, y, canvas)));
+        for (int y = canvas->hh; y > -canvas->hh; y--) {
+            Color color = trace_ray(
+                scene, scene->cam.pos,
+                viewport_coords(&scene->viewport, x, y, canvas), 1.0, INFINITY);
+            canvas_set_pixel(canvas, x, y, color);
+        }
     }
 }
 
