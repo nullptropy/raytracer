@@ -5,5 +5,5 @@
 - [x] canvas
   - [x] simple bmp encoder
   - [x] user facing api: `set_pixel(x, y, color)`, `export(path)`
-- [ ] raytracer
+- [x] raytracer
 - [ ] rasterizer
