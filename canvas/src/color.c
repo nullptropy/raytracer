@@ -1,4 +1,4 @@
-#include "color.h"
+#include <color.h>
 
 #define safe_add(a, b) UINT8_MAX - (a) < (b) ? 0xff : (a) + (b)
 #define safe_sub(a, b) (a) < (b) ? 0 : (a) - (b)

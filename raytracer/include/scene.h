@@ -1,12 +1,12 @@
 #ifndef RAYTRACER_SCENE_H
 #define RAYTRACER_SCENE_H
 
-#include "canvas/canvas.h"
-#include "linal/vec.h"
+#include <canvas.h>
+#include <vec.h>
 
-#include "camera.h"
-#include "light.h"
-#include "sphere.h"
+#include <camera.h>
+#include <light.h>
+#include <sphere.h>
 
 typedef struct viewport {
     float w;

@@ -1,5 +1,4 @@
-#include "vec.h"
-
+#include <vec.h>
 #include <math.h>
 
 Vec3 vec3_new(float x, float y, float z) {

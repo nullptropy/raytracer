@@ -1,10 +1,10 @@
 #include <math.h>
 
-#include "canvas/color.h"
-#include "linal/vec.h"
+#include <vec.h>
+#include <color.h>
 
-#include "camera.h"
-#include "sphere.h"
+#include <camera.h>
+#include <sphere.h>
 
 Sphere sphere_new(float rad, Vec3 pos, Color color, float specular, float reflective) {
     return (Sphere){ rad, pos, color, specular, reflective };

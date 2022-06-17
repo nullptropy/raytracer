@@ -1,7 +1,7 @@
 #include <inttypes.h>
 #include <stdio.h>
 
-#include "canvas.h"
+#include <canvas.h>
 
 static void canvas_draw_rectangle(Canvas *canvas, int x, int y, int w, int h,
                                   Color color) {

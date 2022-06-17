@@ -1,7 +1,7 @@
 #ifndef RAYTRACER_CAMERA_H
 #define RAYTRACER_CAMERA_H
 
-#include "linal/vec.h"
+#include <vec.h>
 
 typedef struct camera {
     Vec3 pos;

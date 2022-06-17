@@ -1,4 +1,4 @@
-#include "canvas.h"
+#include <canvas.h>
 
 Canvas canvas_new(uint32_t w, uint32_t h) {
     return (Canvas){ (int)(w / 2), (int)(h / 2), bmp_new(w, h) };

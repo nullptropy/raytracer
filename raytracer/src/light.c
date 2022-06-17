@@ -1,5 +1,5 @@
-#include "light.h"
-#include "linal/vec.h"
+#include <light.h>
+#include <vec.h>
 
 Light light_new_point(float intensity, Vec3 position) {
     return (Light){ Point, intensity, position, vec3_new(0, 0, 0) };

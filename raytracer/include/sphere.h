@@ -1,10 +1,10 @@
 #ifndef RAYTRACER_SPHERE_H
 #define RAYTRACER_SPHERE_H
 
-#include "canvas/color.h"
-#include "linal/vec.h"
+#include <color.h>
+#include <vec.h>
 
-#include "camera.h"
+#include <camera.h>
 
 typedef struct sphere {
     float rad;

@@ -2,8 +2,7 @@
 #define CANVAS_BMP_H
 
 #include <stdint.h>
-
-#include "color.h"
+#include <color.h>
 
 typedef struct bmp {
     uint32_t w;

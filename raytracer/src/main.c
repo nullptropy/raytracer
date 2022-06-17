@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "canvas/canvas.h"
-#include "linal/vec.h"
+#include <vec.h>
+#include <canvas.h>
 
-#include "array.h"
-#include "camera.h"
-#include "scene.h"
-#include "sphere.h"
+#include <array.h>
+#include <camera.h>
+#include <scene.h>
+#include <sphere.h>
 
 int main(void) {
     float camera_hview = 1.0;
     float aspect_ratio = 4.0 / 3.0;
-    float canvas_width = 1360;
+    float canvas_width = 1024;
 
     Canvas canvas = canvas_new(canvas_width, canvas_width / aspect_ratio);
     Scene scene =

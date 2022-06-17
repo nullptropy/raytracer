@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "canvas.h"
+#include <canvas.h>
 
 #define LUPACK(v) (v), (v) >> 8, (v) >> 16, (v) >> 24
 

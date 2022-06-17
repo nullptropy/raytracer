@@ -1,4 +1,4 @@
-#include "linal/vec.h"
+#include <vec.h>
 
 typedef enum light_type {
     Point,

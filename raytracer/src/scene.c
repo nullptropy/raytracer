@@ -1,14 +1,14 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "canvas/canvas.h"
-#include "linal/vec.h"
+#include <vec.h>
+#include <canvas.h>
 
-#include "array.h"
-#include "camera.h"
-#include "color.h"
-#include "scene.h"
-#include "sphere.h"
+#include <array.h>
+#include <camera.h>
+#include <color.h>
+#include <scene.h>
+#include <sphere.h>
 
 typedef struct hit_record {
     float t;

@@ -3,8 +3,8 @@
 
 #include <stdint.h>
 
-#include "bmp.h"
-#include "color.h"
+#include <bmp.h>
+#include <color.h>
 
 typedef struct canvas {
     int hw;
