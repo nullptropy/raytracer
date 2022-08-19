@@ -1,6 +1,6 @@
 # Raytracer
 
-Raytracer implementation in pure C99. This project also features a 24 bit bmp encoder and as well as a simple linear algebra library for doing vector math.
+A simple raytracer implementation. This project also features a 24 bit BMP encoder and as well as a simple linear algebra library for doing vector math.
 
 # TODO
 - [ ] extend the linear algebra library to support matrix math
